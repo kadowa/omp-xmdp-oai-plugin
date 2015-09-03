@@ -18,14 +18,16 @@
  * @brief OAI metadata format class -- Dublin Core.
  */
 
-class OAIMetadataFormat_XMP extends OAIMetadataFormat {
+class OAIMetadataFormat_XMDP extends OAIMetadataFormat {
 
 	/**
 	 * @copydoc OAIMetadataFormat::toXML
 	 */
-	function toXml(&$dataObject, $format = null) {
+	function toXml(&$record, $format = null) {
+		$publicationFormat =& $record->getData('publicationFormat');
+		
 		import('lib.pkp.plugins.metadata.dc11.schema.Dc11Schema');
-		$dcDescription = $dataObject->extractMetadata(new Dc11Schema());
+		$dcDescription = $publicationFormat->extractMetadata(new Dc11Schema());
 
 		$response = "<oai_dc:dc\n" .
 			"\txmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\"\n" .
