@@ -50,11 +50,11 @@ class OAIMetadataFormatPlugin_XMDP extends OAIMetadataFormatPlugin {
 	}
 	
 	static function getSchema() {
-		return 'http://www.openarchives.org/OAI/2.0/oai_dc.xsd';
+		return 'http://files.dnb.de/standards/xmetadissplus/xmetadissplus.xsd';
 	}
-	
+
 	static function getNamespace() {
-		return 'http://www.openarchives.org/OAI/2.0/oai_dc/';
+		return 'http://www.d-nb.de/standards/xmetadissplus/';
 	}
 }
 
