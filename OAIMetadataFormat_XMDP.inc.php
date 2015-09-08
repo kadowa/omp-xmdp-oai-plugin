@@ -11,11 +11,11 @@
  * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class OAIMetadataFormat_DC
- * @ingroup oai_format_dc
+ * @class OAIMetadataFormat_XMDP
+ * @ingroup oai_format_xmdp
  * @see OAI
  *
- * @brief OAI metadata format class -- Dublin Core.
+ * @brief OAI metadata format class -- XMetaDissPlus.
  */
 
 import('plugins.metadata.xmdp22.schema.Xmdp22Schema');
@@ -29,14 +29,14 @@ class OAIMetadataFormat_XMDP extends OAIMetadataFormat {
 		$publicationFormat =& $record->getData('publicationFormat');
 		$description = $publicationFormat->extractMetadata(new Xmdp22Schema());
 
-		$response = "<oai_dc:dc\n" .
+/* 		$response = "<oai_dc:dc\n" .
 			"\txmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\"\n" .
 			"\txmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n" .
 			"\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" .
 			"\txsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\n" .
 			"\thttp://www.openarchives.org/OAI/2.0/oai_dc.xsd\">\n";
 
-		foreach($description->getProperties() as $propertyName => $property) { /* @var $property MetadataProperty */
+		foreach($description->getProperties() as $propertyName => $property) { 
 			if ($description->hasStatement($propertyName)) {
 				if ($property->getTranslated()) {
 					$values = $description->getStatementTranslations($propertyName);
@@ -47,8 +47,27 @@ class OAIMetadataFormat_XMDP extends OAIMetadataFormat {
 			}
 		}
 
-		$response .= "</oai_dc:dc>\n";
+		$response .= "</oai_dc:dc>\n"; */
+		
+		$response = "<xMetaDiss:xMetaDiss\n" . 
+			"\txmlns:xMetaDiss=\"http://www.d-nb.de/standards/xmetadissplus/\"\n" .
+			"\txmlns:cc=\"http://www.d-nb.de/standards/cc/\"\n" .
+			"\txmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n" .
+			"\txmlns:dcmitype=\"http://purl.org/dc/dcmitype\"\n" .
+			"\txmlns:dcterms=\"http://purl.org/dc/terms/\"\n" .
+			"\txmlns:ddb=\"http://www.d-nb.de/standards/ddb/\"\n" .
+			"\txmlns:dini=\"http://www.d-nb.de/standards/xmetadissplus/type/\"\n" .
+			"\txmlns:doi=\"http://www.d-nb.de/standards/doi/\"\n" .
+			"\txmlns:hdl=\"http://www.d-nb.de/standards/hdl/\"\n" .
+			"\txmlns:pc=\"http://www.d-nb.de/standards/pc/\"\n" .
+			"\txmlns=\"http://www.d-nb.de/standards/subject/\"\n" .
+			"\txmlns:thesis=\"http://www.ndltd.org/standards/metadata/etdms/1.0/\"\n" .
+			"\txmlns:urn=\"http://www.d-nb.de/standards/urn/\"\n" .
+			"\txsi:schemaLocation=\"http://www.d-nb.de/standards/xmetadissplus/ http://www.d-nb.de/standards/xmetadissplus/xmetadissplus.xsd\"\n" .
+			"\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n";
 
+		$response .= "<dc:title xsi:type=\"ddb:titleISO639-2\" lang=\"ger\" >Kostengünstige Digitalisierung eines Zettelkataloges</dc:title>";
+		$response .= "</xMetaDiss:xMetaDiss>";
 		return $response;
 	}
 

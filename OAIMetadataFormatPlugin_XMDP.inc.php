@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @file plugins/oaiMetadataFormats/dc/OAIMetadataFormatPlugin_DC.inc.php
+ * @file plugins/oaiMetadataFormats/xmdp/OAIMetadataFormatPlugin_XMDP.inc.php
  *
  * Copyright (c) 2014-2015 Simon Fraser University Library
  * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class OAIMetadataFormatPlugin_DC
+ * @class OAIMetadataFormatPlugin_XMDP
  * @ingroup oai_format
  * @see OAI
  *
- * @brief dc metadata format plugin for OAI.
+ * @brief XMetaDissPlus metadata format plugin for OAI.
  */
 
 import('lib.pkp.classes.plugins.OAIMetadataFormatPlugin');
