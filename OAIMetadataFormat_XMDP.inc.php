@@ -28,26 +28,6 @@ class OAIMetadataFormat_XMDP extends OAIMetadataFormat {
 	function toXml(&$record, $format = null) {
 		$publicationFormat =& $record->getData('publicationFormat');
 		$description = $publicationFormat->extractMetadata(new Xmdp22Schema());
-
-/* 		$response = "<oai_dc:dc\n" .
-			"\txmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\"\n" .
-			"\txmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n" .
-			"\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" .
-			"\txsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\n" .
-			"\thttp://www.openarchives.org/OAI/2.0/oai_dc.xsd\">\n";
-
-		foreach($description->getProperties() as $propertyName => $property) { 
-			if ($description->hasStatement($propertyName)) {
-				if ($property->getTranslated()) {
-					$values = $description->getStatementTranslations($propertyName);
-				} else {
-					$values = $description->getStatement($propertyName);
-				}
-				$response .= $this->formatElement($propertyName, $values, $property->getTranslated());
-			}
-		}
-
-		$response .= "</oai_dc:dc>\n"; */
 		
 		$response = "<xMetaDiss:xMetaDiss\n" . 
 			"\txmlns:xMetaDiss=\"http://www.d-nb.de/standards/xmetadissplus/\"\n" .
@@ -65,8 +45,18 @@ class OAIMetadataFormat_XMDP extends OAIMetadataFormat {
 			"\txmlns:urn=\"http://www.d-nb.de/standards/urn/\"\n" .
 			"\txsi:schemaLocation=\"http://www.d-nb.de/standards/xmetadissplus/ http://www.d-nb.de/standards/xmetadissplus/xmetadissplus.xsd\"\n" .
 			"\txmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n";
+		
+		foreach($description->getProperties() as $propertyName => $property) {
+			if ($description->hasStatement($propertyName)) {
+				if ($property->getTranslated()) {
+					$values = $description->getStatementTranslations($propertyName);
+				} else {
+					$values = $description->getStatement($propertyName);
+				}
+				$response .= $this->formatElement($propertyName, $values, $property->getTranslated());
+			}
+		}
 
-		$response .= "<dc:title xsi:type=\"ddb:titleISO639-2\" lang=\"ger\" >Kostengünstige Digitalisierung eines Zettelkataloges</dc:title>";
 		$response .= "</xMetaDiss:xMetaDiss>";
 		return $response;
 	}
@@ -94,7 +84,7 @@ class OAIMetadataFormat_XMDP extends OAIMetadataFormat {
 					if ($key == METADATA_DESCRIPTION_UNKNOWN_LOCALE) {
 						$response .= "\t<$openingElement>" . OAIUtils::prepOutput($subValue) . "</$closingElement>\n";
 					} else {
-						$response .= "\t<$openingElement xml:lang=\"$key\">" . OAIUtils::prepOutput($subValue) . "</$closingElement>\n";
+						$response .= "\t<$openingElement lang=\"$key\">" . OAIUtils::prepOutput($subValue) . "</$closingElement>\n";
 					}
 				}
 			} else {
