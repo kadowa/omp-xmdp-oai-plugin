@@ -18,6 +18,8 @@
  * @brief OAI metadata format class -- Dublin Core.
  */
 
+import('plugins.metadata.xmdp22.schema.Xmdp22Schema');
+
 class OAIMetadataFormat_XMDP extends OAIMetadataFormat {
 
 	/**
@@ -25,9 +27,7 @@ class OAIMetadataFormat_XMDP extends OAIMetadataFormat {
 	 */
 	function toXml(&$record, $format = null) {
 		$publicationFormat =& $record->getData('publicationFormat');
-		
-		import('lib.pkp.plugins.metadata.dc11.schema.Dc11Schema');
-		$dcDescription = $publicationFormat->extractMetadata(new Dc11Schema());
+		$description = $publicationFormat->extractMetadata(new Xmdp22Schema());
 
 		$response = "<oai_dc:dc\n" .
 			"\txmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\"\n" .
@@ -36,12 +36,12 @@ class OAIMetadataFormat_XMDP extends OAIMetadataFormat {
 			"\txsi:schemaLocation=\"http://www.openarchives.org/OAI/2.0/oai_dc/\n" .
 			"\thttp://www.openarchives.org/OAI/2.0/oai_dc.xsd\">\n";
 
-		foreach($dcDescription->getProperties() as $propertyName => $property) { /* @var $property MetadataProperty */
-			if ($dcDescription->hasStatement($propertyName)) {
+		foreach($description->getProperties() as $propertyName => $property) { /* @var $property MetadataProperty */
+			if ($description->hasStatement($propertyName)) {
 				if ($property->getTranslated()) {
-					$values = $dcDescription->getStatementTranslations($propertyName);
+					$values = $description->getStatementTranslations($propertyName);
 				} else {
-					$values = $dcDescription->getStatement($propertyName);
+					$values = $description->getStatement($propertyName);
 				}
 				$response .= $this->formatElement($propertyName, $values, $property->getTranslated());
 			}

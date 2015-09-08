@@ -24,7 +24,7 @@ class OAIMetadataFormatPlugin_XMDP extends OAIMetadataFormatPlugin {
 		parent::OAIMetadataFormatPlugin();
 	}
 	
-		/**
+	/**
 	 * Get the name of this plugin. The name must be unique within
 	 * its category.
 	 * @return String name of plugin
