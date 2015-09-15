@@ -19,6 +19,7 @@
  */
 
 import('plugins.metadata.xmdp22.schema.Xmdp22Schema');
+import('plugins.metadata.xmdp22.filter.Xmdp22DescriptionXmlFilter');
 
 class OAIMetadataFormat_XMDP extends OAIMetadataFormat {
 
@@ -29,7 +30,9 @@ class OAIMetadataFormat_XMDP extends OAIMetadataFormat {
 		$publicationFormat =& $record->getData('publicationFormat');
 		$description = $publicationFormat->extractMetadata(new Xmdp22Schema());
 		
-		$response = "<xMetaDiss:xMetaDiss\n" . 
+//		error_log(var_export($description, true));
+		
+/* 		$response = "<xMetaDiss:xMetaDiss\n" . 
 			"\txmlns:xMetaDiss=\"http://www.d-nb.de/standards/xmetadissplus/\"\n" .
 			"\txmlns:cc=\"http://www.d-nb.de/standards/cc/\"\n" .
 			"\txmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n" .
@@ -57,7 +60,16 @@ class OAIMetadataFormat_XMDP extends OAIMetadataFormat {
 			}
 		}
 
-		$response .= "</xMetaDiss:xMetaDiss>";
+		$response .= "</xMetaDiss:xMetaDiss>"; */
+		
+		
+		//FIXME: Hack to remove the duplicate XML document declarations
+		$xmlFilter = new Xmdp22DescriptionXmlFilter(PersistableFilter::tempGroup(
+				'metadata::plugins.metadata.xmdp22.schema.Xmdp22Schema(*)',
+				'xml::schema(plugins/metadata/xmdp22/filter/xmdp22.xsd)'));
+		
+		$response = substr($xmlFilter->process($description), 39);
+		
 		return $response;
 	}
 
@@ -74,6 +86,8 @@ class OAIMetadataFormat_XMDP extends OAIMetadataFormat {
 		$openingElement = str_replace(array('[@', ']'), array(' ',''), $propertyName);
 		$closingElement = String::regexp_replace('/\[@.*/', '', $propertyName);
 
+		//error_log("o: " . var_export($propertyName, true) . var_export($values, true));
+
 		// Create the actual XML entry.
 		$response = '';
 		foreach ($values as $key => $value) {
@@ -84,7 +98,7 @@ class OAIMetadataFormat_XMDP extends OAIMetadataFormat {
 					if ($key == METADATA_DESCRIPTION_UNKNOWN_LOCALE) {
 						$response .= "\t<$openingElement>" . OAIUtils::prepOutput($subValue) . "</$closingElement>\n";
 					} else {
-						$response .= "\t<$openingElement lang=\"$key\">" . OAIUtils::prepOutput($subValue) . "</$closingElement>\n";
+						$response .= "\t<$openingElement xml:lang=\"$key\">" . OAIUtils::prepOutput($subValue) . "</$closingElement>\n";
 					}
 				}
 			} else {
