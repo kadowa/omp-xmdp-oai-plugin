@@ -30,11 +30,11 @@ class OAIMetadataFormat_XMDP extends OAIMetadataFormat {
 		$publicationFormat =& $record->getData('publicationFormat');
 		$description = $publicationFormat->extractMetadata(new Xmdp22Schema());
 		
-		//FIXME: Hack to remove the duplicate XML document declarations
 		$xmlFilter = new Xmdp22DescriptionXmlFilter(PersistableFilter::tempGroup(
 				'metadata::plugins.metadata.xmdp22.schema.Xmdp22Schema(*)',
 				'xml::schema(plugins/metadata/xmdp22/filter/xmdp22.xsd)'));
 		
+		//FIXME: Hack to remove the duplicate XML document declarations
 		$response = substr($xmlFilter->process($description), 39);
 		
 		return $response;

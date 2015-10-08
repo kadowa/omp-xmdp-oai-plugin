@@ -46,7 +46,7 @@ class OAIMetadataFormatPlugin_XMDP extends OAIMetadataFormatPlugin {
 	}
 
 	static function getMetadataPrefix() {
-		return 'oai_xmdp';
+		return 'XMetaDissPlus';
 	}
 	
 	static function getSchema() {
