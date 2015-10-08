@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../dtd/locale.dtd">
+
+<!--
+  * plugins/oaiMetadataFormats/dc/locale/de_DE/locale.xml
+  *
+  * Copyright (c) 2015 Heidelberg University
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings.
+  -->
+ 
+<locale name="de_DE" full_name="Deutsch">
+	<message key="plugins.oaiMetadata.xmdp.displayName">XMDP-Metadatenformat</message>
+	<message key="plugins.oaiMetadata.xmdp.description">Strukturiert Metadaten im XMetaDissPlus-Format.</message>
+</locale>
