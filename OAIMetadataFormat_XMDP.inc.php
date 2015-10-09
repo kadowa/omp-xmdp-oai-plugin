@@ -7,7 +7,8 @@
 /**
  * @file plugins/oaiMetadataFormats/xmdp/OAIMetadataFormat_XMDP.inc.php
  *
- * Copyright (c) 2015 Heidelberg University
+ * Copyright (c) 2014-2015 Simon Fraser University Library
+ * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class OAIMetadataFormat_XMDP
