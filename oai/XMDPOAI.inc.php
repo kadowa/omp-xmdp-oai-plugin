@@ -1,21 +1,17 @@
 <?php
 
 /**
- * @defgroup oai_format_xmdp XMetaDissPlus OAI format plugin
- */
-
-/**
- * @file plugins/oaiMetadataFormats/xmdp/OAIMetadataFormat_XMDP.inc.php
+ * @file plugins/oaiMetadataFormats/xmdp/oai/XMDPOAI.inc.php
  *
  * Copyright (c) 2014-2015 Simon Fraser University Library
  * Copyright (c) 2003-2015 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class OAIMetadataFormat_XMDP
- * @ingroup oai_format_xmdp
- * @see OAI
+ * @class XMDPOAI
+ * @ingroup oai_omp_xmdp
+ * @see PressOAI
  *
- * @brief OAI metadata format class -- XMetaDissPlus.
+ * @brief Additional OAI functions for adding publication format sets.
  */
 
 import('classes.oai.omp.PressOAI');
