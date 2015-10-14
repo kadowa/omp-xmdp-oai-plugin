@@ -14,6 +14,7 @@
  * @brief XMetaDissPlus metadata format plugin for OAI.
  */
 
+import('plugins.oaiMetadataFormats.xmdp.oai.XMDPOAI');
 import('lib.pkp.classes.plugins.OAIMetadataFormatPlugin');
 
 class OAIMetadataFormatPlugin_XMDP extends OAIMetadataFormatPlugin {
@@ -23,6 +24,11 @@ class OAIMetadataFormatPlugin_XMDP extends OAIMetadataFormatPlugin {
 	 */
 	function OAIMetadataFormatPlugin_XMDP() {
 		parent::OAIMetadataFormatPlugin();
+
+		$oai = new XMDPOAI();
+		HookRegistry::register('PressOAI::sets', array(&$oai, 'sets'));
+		HookRegistry::register('PressOAI::records', array(&$oai, 'records'));
+		HookRegistry::register('PressOAI::identifiers', array(&$oai, 'identifiers'));
 	}
 	
 	/**
