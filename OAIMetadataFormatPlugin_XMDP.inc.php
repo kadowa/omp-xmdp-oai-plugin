@@ -29,6 +29,8 @@ class OAIMetadataFormatPlugin_XMDP extends OAIMetadataFormatPlugin {
 		HookRegistry::register('PressOAI::sets', array(&$oai, 'sets'));
 		HookRegistry::register('PressOAI::records', array(&$oai, 'records'));
 		HookRegistry::register('PressOAI::identifiers', array(&$oai, 'identifiers'));
+		HookRegistry::register('OAIDAO::_returnRecordFromRow', array(&$oai, '_addPublicationFormatSets'));
+		HookRegistry::register('OAIDAO::_returnIdentifierFromRow', array(&$oai, '_addPublicationFormatSets'));
 	}
 	
 	/**
