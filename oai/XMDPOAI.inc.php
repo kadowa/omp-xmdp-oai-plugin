@@ -179,11 +179,7 @@ class XMDPOAI extends PressOAI {
 	function _addPublicationFormatSets($hookName, $params) {
 		$record =& $params[0];
 		$row = $params[1];
-		
-		foreach ($row as $key => $value) {
-			error_log($key);
-		}
-		
+
  		$pressDAO =& DAORegistry::getDAO('PressDAO');
  		$pressId = $row['press_id'];
 		$press = $pressDAO->getById($pressId);
