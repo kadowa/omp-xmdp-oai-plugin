@@ -6,7 +6,7 @@
 
 * The XMetaDissPlus **OAI** Plugin relies on the [XMetaDissPlus **Metadata** plugin][xmdp22] for OMP to format the metadata. See its [README][xmdp22-readme] for information on how to install and configure this plugin.
 
-* To generate a valid record, XMetaDissPlus requires the existence of a public identifier. You can either enable the OMP DOI plugin (`Management -> Settings -> Website -> Plugins -> Public Identifier Plugins -> DOI`) that is included in OMP or install and enable the [URN DNB plugin][urn_dnb] for OMP.
+* To generate a valid record, XMetaDissPlus requires the existence of a public identifier. You can either enable the OMP DOI plugin (`Management > Settings > Website > Plugins > Public Identifier Plugins > DOI`) that is included in OMP or install and enable the [URN DNB plugin][urn_dnb] for OMP.
 
 ## Installation
 
