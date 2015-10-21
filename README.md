@@ -25,7 +25,7 @@ See the [COPYING][gpl-licence] included with OMP for the terms of this license.
 
 [pkp]: http://pkp.sfu.ca/
 [xmdp22]: https://github.com/kadowa/omp-xmdp-metadata-plugin
-[xmdp22-readme]: https://github.com/kadowa/omp-xmdp-metadata-plugin/README.md
+[xmdp22-readme]: https://github.com/kadowa/omp-xmdp-metadata-plugin/blob/master/README.md
 [xmetadissplus]: http://www.dnb.de/DE/Standardisierung/Metadaten/xMetadissPlus.html
 [urn_dnb]: https://github.com/kadowa/omp-dnb-urn-plugin
 [dnb]: http://www.dnb.de
